@@ -1,5 +1,9 @@
 import random
 
+from colorama import Fore, Style, init
+
+init(autoreset=True)
+
 
 def find_player(records, player_id):
     for player in records:
@@ -57,16 +61,16 @@ def buy_item(records):
             for item, price in shop_items.items():
                 if item_name == item:
                     if player["gold"] < price:
-                        print("Không đủ vàng để mua vật phẩm này!")
+                        print(f"{Fore.RED}Không đủ vàng để mua vật phẩm này!")
                     else:
                         remaining_amount = player["gold"] - price
                         player["inventory"].append(item_name)
                         print(f">> Mua thành công {item_name}!"
                             f"\n>> Số vàng còn lại: {remaining_amount}"
                             )
-                        return
-                    
-                else:
-                    print("Vật phẩm không tồn tại trong cửa hàng!")
                     return
+                    
+            else:
+                print("Vật phẩm không tồn tại trong cửa hàng!")
+                return
             
